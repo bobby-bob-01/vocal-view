@@ -1,0 +1,57 @@
+<?php 
+error_reporting(0);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header class="row container">
+      <h1>vocal view</h1>
+      <nav class="navbar">
+        <a class="active" href="./index.html">Home</a>
+        <a href="./search.html">Search</a>
+        <a href="./about.html">AboutUs</a>
+        <a href="./contact.html">Contact</a>
+      </nav>
+      <div class="icons">
+        <a href="#">Tag line</a>
+      </div>
+    </header>
+    <div class="main">
+    <form action="upload.php" method="post" enctype="multipart/form-data">
+      <label for="image">Choose an image:</label><br>
+      <input
+        class="img-ip"
+        type="file"
+        name="image"
+        accept="image/*"
+        required /><br /><br />
+
+      <label for="audio">Choose an audio file:</label><br>
+      <input
+        class="audio-ip"
+        type="file"
+        name="audio"
+        accept="audio/*"
+        required /><br /><br /><br>
+
+      <input type="submit" value="Upload" class="button"/>
+    </form>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
+
+<?php
+$filename = $_FILES["uploadfile"]["name"];
+$tempname = $_FILES["uploadfile"]["tmp_name"];
+$folder = "img/".$filename;
+echo $folder;
+move_uploaded_file($tempname,$folder);
+?>
